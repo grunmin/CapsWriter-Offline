@@ -8,6 +8,7 @@ from threading import Event
 from concurrent.futures import ThreadPoolExecutor
 from util.client_send_audio import send_audio
 from util.my_status import Status
+from client_stream import stream_open, stream_reopen
 
 
 task = asyncio.Future()
@@ -32,6 +33,15 @@ def shortcut_correct(e: keyboard.KeyboardEvent):
 
 def launch_task():
     global task
+
+    try:
+        Cosmic.stream.start()
+    except Exception as e:
+        if not Cosmic.stream:
+            Cosmic.stream = stream_open(True)
+        else:
+            stream_reopen()
+            Cosmic.stream.start()
 
     # 记录开始时间
     t1 = time.time()
@@ -63,6 +73,9 @@ def cancel_task():
     # 取消协程任务
     task.cancel()
 
+    if Cosmic.stream:
+        Cosmic.stream.stop()
+
 
 def finish_task():
     global task
@@ -81,6 +94,9 @@ def finish_task():
         ),
         Cosmic.loop
     )
+
+    if Cosmic.stream:
+        Cosmic.stream.stop()
 
 
 # =================单击模式======================

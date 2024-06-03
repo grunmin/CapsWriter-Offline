@@ -47,6 +47,9 @@ class ClientConfig:
     file_seg_duration = 25           # 转录文件时分段长度
     file_seg_overlap = 2             # 转录文件时分段重叠
 
+    steam_listen_background = True   # 是否在后台持续监听麦克风
+                                        # 如果为 False，则只有在按下快捷键时才开始监听，对无线录音设备续航更友好
+                                        # 如果为 True，则一直监听，不会出现按下快捷键后，还要等待一段时间才开始录音的情况
 
 class ModelPaths:
     model_dir = Path() / 'models'

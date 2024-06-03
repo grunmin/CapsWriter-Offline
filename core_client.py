@@ -56,7 +56,7 @@ async def main_mic():
     observer = observe_hot()
 
     # 打开音频流
-    Cosmic.stream = stream_open()
+    Cosmic.stream = stream_open(Config.steam_listen_background)
 
     # Ctrl-C 关闭音频流，触发自动重启
     signal.signal(signal.SIGINT, stream_close)

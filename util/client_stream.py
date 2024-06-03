@@ -48,7 +48,7 @@ def stream_reopen():
     Cosmic.stream = stream_open()
 
 
-def stream_open():
+def stream_open(start=True):
     # 显示录音所用的音频设备
     channels = 1
     try:
@@ -60,7 +60,7 @@ def stream_open():
     except sd.PortAudioError:
         console.print("没有找到麦克风设备", end='\n\n', style='bright_red')
         input('按回车键退出'); sys.exit()
-
+    
     stream = sd.InputStream(
         samplerate=48000,
         blocksize=int(0.05 * 48000),  # 0.05 seconds
@@ -68,8 +68,10 @@ def stream_open():
         dtype="float32",
         channels=channels,
         callback=record_callback,
-        finished_callback=stream_reopen,
-    ); stream.start()
+        finished_callback=stream_reopen if start else None,
+    );
+    if start:
+        stream.start()
 
     return stream
 
