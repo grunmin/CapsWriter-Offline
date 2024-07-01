@@ -8,7 +8,7 @@ from threading import Event
 from concurrent.futures import ThreadPoolExecutor
 from util.client_send_audio import send_audio
 from util.my_status import Status
-from client_stream import stream_open, stream_reopen
+from util.client_stream import stream_open, stream_reopen
 
 
 task = asyncio.Future()

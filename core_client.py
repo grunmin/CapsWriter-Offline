@@ -24,6 +24,7 @@ from util.client_hot_update import update_hot_all, observe_hot
 
 from util.client_transcribe import transcribe_check, transcribe_send, transcribe_recv
 from util.client_adjust_srt import adjust_srt
+from util.client_translate_and_replace_selected_text_offline import translate_and_replace_selected_text_offline
 
 from util.empty_working_set import empty_current_working_set
 
