@@ -5,6 +5,7 @@ from config import ClientConfig as Config
 
 async def translate_text(text, url=f"ws://{Config.addr}:{Config.offline_translate_port}"):
     # 设置要发送的数据
+    print(f"translate text: {text}")
     data = {"text": text}
     # 将Python字典转换为JSON格式的字符串
     json_data = json.dumps(data)
@@ -14,6 +15,7 @@ async def translate_text(text, url=f"ws://{Config.addr}:{Config.offline_translat
         await ws.send(json_data)
         response = await ws.recv()
         # 假设响应是JSON格式的字符串，将其转换回Python字典
+        print(f"receive response {response}")
         response_data = json.loads(response)
         # 假设字典中有一个'translated_text'键，返回它的值
         return response_data.get('translated_text', 'Translation not available')

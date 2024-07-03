@@ -38,7 +38,7 @@ async def offline_translate_server(websocket, path):
         await websocket.send(json.dumps({'translated_text': translated_text}))
 
 def run_offline_translate_service():
-    start_server = websockets.serve(offline_translate_server, ClientConfig.addr, Config.offline_translate_port)
+    start_server = websockets.serve(offline_translate_server, Config.addr, Config.offline_translate_port)
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
 

@@ -20,11 +20,11 @@ async def on_hotkey_pressed2():
         # 复制选中文字  
         pyautogui.hotkey('command', 'c')
         await asyncio.sleep(0.1)  # 等待剪贴板更新
-        text = pyclip.paste()
+        text = pyclip.paste().decode('utf-8')
         p = platform.system()
-        trans_text = translate_offline(text)
+        trans_text = await translate_offline(text)
         pyclip.copy(trans_text)
-        print(f"select text: {text}， tran text: {trans_text}, platform: {p}")
+        print(f"select text: {text}， tran text: {trans_text}")
 
         # 粘贴结果
         if platform.system() == 'Darwin':
