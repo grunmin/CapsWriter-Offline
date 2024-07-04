@@ -1,3 +1,31 @@
+## TL;DR
+Upstream https://github.com/HaujetZhao/CapsWriter-Offline
+Part of the code comes from https://github.com/H1DDENADM1N/CapsWriter-Offline
+
+Two changes compared to the upstream warehouse.
+1. Supports monitoring only after pressing the button, which is friendly to the battery life of wireless recording devices 
+2. Support offline translation 
+
+New configuration items:
+- steam_listen_background. Enabled by default. When you use a wireless recording device (such as a Bluetooth headset), you may consider turning it off to increase the battery life of the device. After it is turned on, there will be a 1-2 second delay before the recording starts.
+- offline_translate_port. Offline translation service listening port
+- translate_rewrite_shortcut. Offline Translation Shortcuts
+
+Support Windows and Mac
+
+---
+
+相比上游仓库的两个改动
+- 支持按下按键后才开启监听，对无线录音设备续航友好
+- 支持离线翻译
+
+新增配置项
+- steam_listen_background. 默认开启。当你使用无线录音设备（比如蓝牙耳机）时，可以考虑关闭以增加设备续航。开启之后录音的开启会有 1-2 秒的延迟
+- offline_translate_port. 离线翻译服务监听端口
+- translate_rewrite_shortcut. 离线翻译快捷键
+
+支持 Windows 和 Mac
+
 ## CapsWriter-Offline
 
 ![image-20240108115946521](assets/image-20240108115946521.png)  
