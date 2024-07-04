@@ -6,6 +6,7 @@ from pathlib import Path
 class ServerConfig:
     addr = '0.0.0.0'
     port = '6016'
+    offline_translate_port = '6017' # 离线翻译端口
 
     format_num = True  # 输出时是否将中文数字转为阿拉伯数字
     format_punc = True  # 输出时是否启用标点符号引擎
@@ -16,8 +17,10 @@ class ServerConfig:
 class ClientConfig:
     addr = '127.0.0.1'          # Server 地址
     port = '6016'               # Server 端口
+    offline_translate_port = '6017' # 离线翻译端口
 
-    shortcut     = 'caps lock'  # 控制录音的快捷键，默认是 CapsLock
+    shortcut     = 'CapsLock'  # 控制录音的快捷键，默认是 CapsLock
+    translate_rewrite_shortcut = 'Right Option'
     hold_mode    = True         # 长按模式，按下录音，松开停止，像对讲机一样用。
                                 # 改为 False，则关闭长按模式，也就是单击模式
                                 #       即：单击录音，再次单击停止
@@ -28,7 +31,7 @@ class ClientConfig:
     paste        = True         # 是否以写入剪切板然后模拟 Ctrl-V 粘贴的方式输出结果
     restore_clip = True         # 模拟粘贴后是否恢复剪贴板
 
-    save_audio = True           # 是否保存录音文件
+    save_audio = False           # 是否保存录音文件
     audio_name_len = 20         # 将录音识别结果的前多少个字存储到录音文件名中，建议不要超过200
 
     trash_punc = '，。,.'        # 识别结果要消除的末尾标点
@@ -56,6 +59,7 @@ class ModelPaths:
     paraformer_path = Path() / 'models' / 'paraformer-offline-zh' / 'model.int8.onnx'
     tokens_path = Path() / 'models' / 'paraformer-offline-zh' / 'tokens.txt'
     punc_model_dir = Path() / 'models' / 'punc_ct-transformer_cn-en'
+    opus_mt_dir = Path() / 'models' / 'Helsinki-NLP--opus-mt-zh-en'     # 离线翻译模型
 
 
 class ParaformerArgs:
